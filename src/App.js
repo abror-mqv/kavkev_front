@@ -1,23 +1,35 @@
-import logo from './logo.svg';
 import './App.css';
+import "./App.css";
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import { DataProvider } from './DataContext'
+import { Step1 } from './steps/Step1'
+import ErrorPage from './steps/ErrorPage';
+import { Login } from './steps/Login'
+import { Registration } from './steps/Registration'
+import { RegPassword } from './steps/RegPassword'
+import { Profile } from './steps/Profile';
+import { LogPassword } from './steps/LogPassword'
+import { ChoseLogReg } from './steps/ChoseLogReg' 
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+            <DataProvider/>
+
+            <Router>
+                <Switch>
+                    <Route exact path="/" component={ Login } />
+                    <Route exact path="/scan/:tokenSlug" component={ Step1 } />
+                    <Route exact path="/chose-log-reg" component={ ChoseLogReg } />
+                    <Route exact path="/login" component={ Login } />
+                    <Route exact path="/registration" component={ Registration } />
+                    <Route exact path="/reg-password" component={ RegPassword } />
+                    <Route exact path="/profile" component={ Profile } />
+                    <Route exact path="/log-password" component={ LogPassword } />
+                    
+                    <Route path="/" component={ ErrorPage } />
+                </Switch>
+            </Router>
     </div>
   );
 }

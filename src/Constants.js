@@ -1,0 +1,1 @@
+const Domain = () => {return('http://api-kavkev.kg')}
