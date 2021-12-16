@@ -11,6 +11,7 @@ import { Profile } from './steps/Profile';
 import { LogPassword } from './steps/LogPassword'
 import { ChoseLogReg } from './steps/ChoseLogReg' 
 import { Test } from './steps/Test'
+import {About} from './steps/About'
 
 function App() {
   return (
@@ -22,6 +23,7 @@ function App() {
                     <Route exact path="/" component={ Login } />
                     <Route exact path="/scan/:tokenSlug" component={ Step1 } />
                     <Route exact path="/chose-log-reg" component={ ChoseLogReg } />
+                    <Route exact path="/about" component={ About } />
                     <Route exact path="/login" component={ Login } />
                     <Route exact path="/registration" component={ Registration } />
                     <Route exact path="/reg-password" component={ RegPassword } />
