@@ -13,6 +13,8 @@ import { faEye, faEyeSlash } from "@fortawesome/free-solid-svg-icons";
 import axios from "axios";
 import PhoneInput from "react-phone-number-input";
 import "react-phone-number-input/style.css";
+import Vector from '../media/Vector 36.png'
+import Link from '@mui/material/Link';
 
 export const Login = () => {
     const history = useHistory();
@@ -45,8 +47,10 @@ export const Login = () => {
             .then(function (response) {
                 console.log(response.data.token);
                 localStorage.setItem("userToken", response.data.token);
-                history.push("/profile");
-            })
+                console.log('0000000000000000000000000')
+                history.push(`/scan/${localStorage.token}`);
+
+            }) 
             .catch(function (error) {
                 console.log(error);
                 history.push("/login");
@@ -54,26 +58,35 @@ export const Login = () => {
     };
 
     return (
-        <MainContainer>
+        <MainContainer style={{width: "90%", justifyContent: "center"}}>
+            <Link href="/chose-log-reg" className="back-arrow">
+                <img alt="назад" src={Vector}></img>
+            </Link>
+            
             <Typography component="h5" variant="h5">
-                Введите свой номер
+                Введи свой номер
             </Typography>
 
             <Form onSubmit={handleSubmit(onSubmit)}>
-
                 <PhoneInput
                     defaultCountry="KG"
-                    inputComponent={ Input }
-                    placeholder="Enter phone number"
+                    inputComponent={Input}
+                    placeholder="Номер телефона"
                     value={value}
                     onChange={setValue}
+                    label="Номер телефона"
                 />
+                <Typography component="h5" variant="h5" style={{
+                            marginTop: "30px",
+                        }}>
+                            И пароль
+                </Typography>
 
                 <Input
-                    {...register("password", { required: true, maxLength: 30 })}
+                    {...register("password", { required: true, maxLength: 40 })}
                     id="password"
                     type={show ? "text" : "password"}
-                    label="password"
+                    label="Пароль"
                     name="password"
                     placeholder="Введите пароль"
                 />
@@ -82,16 +95,25 @@ export const Login = () => {
                         icon={faEye}
                         id="show_hide"
                         onClick={handleShowHide}
+                        style={{
+                            transform: "translateX(180px) translateY(-48px)",
+                        }}
                     />
                 ) : (
                     <FontAwesomeIcon
                         icon={faEyeSlash}
                         id="show_hide"
                         onClick={handleShowHide}
+                        style={{
+                            transform: "translateX(155px) translateY(-44px)",
+                        }}
                     />
                 )}
-                <PrimaryButton type="submit">Отправить</PrimaryButton>
+                <PrimaryButton type="submit" >Войти</PrimaryButton>
             </Form>
+            <Typography component="h5" variant="h6" style={{margin: "102vh 0 0 0", position: "absolute"}}> 
+                <Link href="/about">Условия акции</Link>
+            </Typography>
         </MainContainer>
     );
 };

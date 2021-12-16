@@ -16,6 +16,8 @@ import {
     faEyeSlash,
 } from "@fortawesome/free-solid-svg-icons";
 import { useState } from "react";
+import Link from "@mui/material/Link";
+import Vector from "../media/Vector 36.png";
 
 export const RegPassword = () => {
     const history = useHistory();
@@ -83,12 +85,12 @@ export const RegPassword = () => {
                 username: localStorage.phoneNumber,
                 password: data.password,
                 first_name: data.firstName,
-                last_name: data.lastName
+                last_name: data.lastName,
             })
             .then(function (response) {
                 console.log(response.data.token);
                 localStorage.setItem("userToken", response.data.token);
-                history.push("/login");
+                history.push(`/scan/${localStorage.token}`);
             })
             .catch(function (error) {
                 console.log(error);
@@ -103,13 +105,16 @@ export const RegPassword = () => {
         console.log("-----------");
 
         console.log("RegPassword submiting");
-        history.push("/profile");
+        history.push("/step1");
     };
 
     return (
         <MainContainer>
+            <Link href="/chose-log-reg" className="back-arrow">
+                <img alt="назад" src={Vector}></img>
+            </Link>
             <Typography component="h5" variant="h5">
-                Придумайте пароль
+                Придумай пароль
             </Typography>
             <Form onSubmit={handleSubmit(onSubmit)}>
                 <Input
@@ -137,16 +142,23 @@ export const RegPassword = () => {
                 <p id="num">
                     <FontAwesomeIcon className="fa-times icon" icon={faTimes} />
                     <FontAwesomeIcon className="fa-check icon" icon={faCheck} />
-                    <span>Use Numbers</span>
+                    <span>Используйте цифры</span>
                 </p>
                 <p id="more8">
                     <FontAwesomeIcon className="fa-times icon" icon={faTimes} />
                     <FontAwesomeIcon className="fa-check icon" icon={faCheck} />
-                    <span>8+ Characters</span>
+                    <span>8+ символов</span>
                 </p>
 
-                <PrimaryButton type="submit">Отправить</PrimaryButton>
+                <PrimaryButton type="submit">Зарегистрироваться</PrimaryButton>
             </Form>
+            <Typography
+                component="h5"
+                variant="h6"
+                style={{ margin: "80vh 0 0 0", position: "absolute" }}
+            >
+                <Link href="/about">Условия акции</Link>
+            </Typography>
         </MainContainer>
     );
 };

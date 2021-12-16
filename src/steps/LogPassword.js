@@ -13,6 +13,8 @@ import {
     faEyeSlash
 } from "@fortawesome/free-solid-svg-icons";
 import { useState } from "react";
+import Link from '@mui/material/Link';
+import Vector from '../media/Vector 36.png'
 
 export const LogPassword = () => {
     const history = useHistory();
@@ -36,6 +38,11 @@ export const LogPassword = () => {
 
     return (
         <MainContainer style={{width:"320px"}}>
+
+            <Link href="/registration" className="back-arrow">
+                <img alt="назад" src={Vector}></img>
+            </Link>
+            
             <Typography component="h5" variant="h5">
                 Введите свой пароль
             </Typography>
@@ -64,6 +71,9 @@ export const LogPassword = () => {
 
                 <PrimaryButton type="submit">Отправить</PrimaryButton>
             </Form>
+            <Typography component="h5" variant="h6" style={{margin: "102vh 0 0 0", position: "absolute"}}> 
+                <Link href="/about">Условия акции</Link>
+            </Typography>
         </MainContainer>
     );
 };

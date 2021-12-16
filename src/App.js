@@ -10,6 +10,7 @@ import { RegPassword } from './steps/RegPassword'
 import { Profile } from './steps/Profile';
 import { LogPassword } from './steps/LogPassword'
 import { ChoseLogReg } from './steps/ChoseLogReg' 
+import { Test } from './steps/Test'
 
 function App() {
   return (
@@ -26,6 +27,7 @@ function App() {
                     <Route exact path="/reg-password" component={ RegPassword } />
                     <Route exact path="/profile" component={ Profile } />
                     <Route exact path="/log-password" component={ LogPassword } />
+                    <Route exact path="/test" component={ Test } />
                     
                     <Route path="/" component={ ErrorPage } />
                 </Switch>

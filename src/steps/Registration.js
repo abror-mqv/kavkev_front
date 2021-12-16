@@ -10,6 +10,8 @@ import { useForm } from "react-hook-form";
 import { PrimaryButton } from "../components/PromaryButton";
 import PhoneInput from "react-phone-number-input";
 import "react-phone-number-input/style.css";
+import Link from "@mui/material/Link";
+import Vector from '../media/Vector 36.png'
 
 export const Registration = () => {
     const history = useHistory();
@@ -27,7 +29,7 @@ export const Registration = () => {
 
     const onSubmit = (data) => {
         localStorage.setItem("firstName", data.firstName);
-        localStorage.setItem("phoneNumber", value)
+        localStorage.setItem("phoneNumber", value);
         setValues(data);
         console.log(data);
         history.push("/reg-password");
@@ -35,8 +37,11 @@ export const Registration = () => {
 
     return (
         <MainContainer>
+            <Link href="/chose-log-reg" className="back-arrow">
+                <img alt="назад" src={Vector}></img>
+            </Link>
             <Typography component="h5" variant="h5">
-                Введите свой номер
+                Введи свой номер
             </Typography>
             <Form onSubmit={handleSubmit(onSubmit)}>
                 <PhoneInput
@@ -47,7 +52,7 @@ export const Registration = () => {
                     onChange={setValue}
                 />
                 <Typography component="h5" variant="h5">
-                    Введите свой name i family
+                    Введи свое имя и фамилию
                 </Typography>
                 <Input
                     {...register("firstName", {
@@ -71,6 +76,13 @@ export const Registration = () => {
                 />
                 <PrimaryButton type="submit">Отправить</PrimaryButton>
             </Form>
+            <Typography
+                component="h5"
+                variant="h6"
+                style={{ margin: "80vh 0 0 0", position: "absolute" }}
+            >
+                <Link href="/about">Условия акции</Link>
+            </Typography>
         </MainContainer>
     );
 };

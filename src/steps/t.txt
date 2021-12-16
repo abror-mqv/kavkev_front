@@ -1,0 +1,31 @@
+    getProfile()
+        .then((res) => {
+            console.log(res);
+            localStorage.setItem("username", res.profile.username);
+            localStorage.setItem("first_name", res.profile.first_name);
+            localStorage.setItem("last_name", res.profile.last_name);
+            localStorage.setItem("qr_quantity", res.profile.qr_quantity);
+            localStorage.setItem("qr_in_day", res.profile.qr_in_day);
+            localStorage.setItem(
+                "which_constest",
+                res.profile.which_contest.name_contest
+            );
+        })
+        .catch((error) => {
+            console.log(error);
+        });
+
+            async function getProfile() {
+                let res = await axios({
+                    method: "GET",
+                    url: "http://www.api-kavkev.kg/api/profile/my/",
+                    headers: {
+                        Authorization: `Token ${localStorage.userToken}`,
+                    },
+                    data: {},
+                });
+                if (res.status === 200) {
+                    console.log(res.status);
+                }
+                return res.data;
+            }
